@@ -17,19 +17,17 @@
     Copyright 2010, 2011, 2012 by neuromancer
 """
 
-import hyphen
+import mhyphen
 import src.io.Input as Input
 import src.io.Output as Output
 import src.aux as aux
 
-dict_name = "en_US"
+h = mhyphen.Hyphenator(language = "en_US",
+                       lmin=1, rmin=1, 
+                       compound_lmin=1, 
+                       compound_rmin=1, 
+                       directory="src/io/text/mhyphen")
 
-try:
-  h = hyphen.hyphenator(language = dict_name,lmin=1, rmin=1, compound_lmin=1, compound_rmin=1)
-except IOError:
-  print "Check on http://pypi.python.org/pypi/PyHyphen how to install " + dict_name + " dict"
-  exit(-1)
-    
 ginternalSize = 35
 
 class InputWords (Input.Input):
