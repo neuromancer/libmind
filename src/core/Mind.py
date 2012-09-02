@@ -47,15 +47,14 @@ class Mind(object):
     
     self.inputs = inputs
     self.outputs = outputs
-    #self.winput = None
-    #self.woutput = None
     
     self.brain = Brain.Brain(inputs, outputs)
-    #self.brain.flush(False)
-    #self.to_associate = []
     self.old_inputs = dict()
     
     self.io          = dict()
+    
+    # TODO: populate and handle input and output only lists  
+    
     self.input_only  = dict()
     self.output_only = dict()
     
@@ -68,23 +67,6 @@ class Mind(object):
               p = gbootstrap(input, output, fnames_texts)
               self.io[input.getName()] = input,p[0],p[1]
     
-    # Looking for linguistic inputs / outputs   
- 
-    #for input in self.inputs:
-    #  if "SeqWord" in input.getName():
-    #    self.winput = input
-
-    #for output in self.outputs:
-    #  if "SeqWord" in output.getName():
-    #    self.woutput = output
-    
-    #assert(len(self.inout) == 1)
-    
-    #ioinput  = filter(lambda i: i.getName() in self.inout, self.inputs )[0]
-    #iooutput = filter(lambda o: o.getName() in self.inout, self.outputs)[0]
-    
-    #self.vectorizer, self.unvectorizer = gbootstrap(ioinput, iooutput, fnames_texts)    
-
   def __process_inputs(self, inputs):
     """
      
@@ -123,14 +105,14 @@ class Mind(object):
     @return dict :
     @author
     """
-    #print voutputs
+    
+    # TODO: how to handle multiple outputs?
     poutputs = ""
     
     for output in self.output_only:
       
       goutput, unvectorizer = self.input_only[output]
       poutputs = poutputs + wunvectorizer.unvectorize(voutputs)
-      #poutputs = poutputs + "\n"
     
     for output in self.io:
       
@@ -150,11 +132,6 @@ class Mind(object):
     
     r = copy.deepcopy(self.old_inputs)
     
-    #if "SeqCatLogic" in r:
-    #  print r["SeqCatLogic"], "->",  
-    #else:
-    #  print [], "->",
-    
     for input in self.input_only:
       
       if not(input in self.old_inputs):
@@ -171,12 +148,6 @@ class Mind(object):
         ginput, _, _ = self.io[input]
         self.old_inputs[input] += ([ginput.stop_symbol] + inputs[input]) 
       
-    
-    #if "SeqCatLogic" in r:
-    #  print r["SeqCatLogic"], "->",  
-    #else:
-    #  print [], "->",
-      
     return self.__process_inputs(r)
     
 
@@ -189,77 +160,16 @@ class Mind(object):
     @author
     """
     
-    # old_words = ""
-    # stop_symbol = self.winput.stop_symbol
-    # winput_name = self.winput.getName()
-    # woutput_name = self.woutput.getName()
-    
-    # # old inputs
-    # for old_inputs in self.to_associate:
-    #     old_words = old_words+old_inputs[winput_name]+stop_symbol
-    
-    # if self.to_associate <> []:
-    #     old_vwords = self.winput.input(old_words)
-    #     old_vwords = self.wvectorizer.wvectorize(old_vwords)
-            
-    
-    # # current inputs
-    # words = inputs[winput_name]+stop_symbol
-    # vwords = self.winput.input(words)
-    # vwords = self.wvectorizer.wvectorize(vwords)
-    
-    # if self.to_associate <> []:
-        
-    #     old_inputs =  dict([ (winput_name , old_vwords) ])
-    #     outputs    = dict([ (woutput_name, vwords    ) ])
-    #     self.brain.setAssociation(old_inputs,outputs)
-    
-    # self.to_associate.append(inputs)
-        
-    # inputs = dict([ (winput_name, vwords) ])
-    #print inputs
-    
     old_inputs = self.__get_old_inputs(inputs)
-    #print inputs["SeqCatLogic"]
     inputs = self.__process_inputs(inputs)
-    
-    #print inputs
     
     y = self.brain.getAssociation(inputs)
     
-    #print y
-    
-    if (old_inputs <> dict()):
+    if (old_inputs <> dict()): # No previous inputs
       self.brain.setAssociation(old_inputs,inputs) 
-    
-    #print y
     
     return self.__process_outputs(y)
     
-    # TODO: Clean up!
-    #words = inputs[winput_name] 
-    
-    #print "Original words:", words
-    #vwords = self.winput.input(words)
-    
-    #vwords = self.wvectorizer.wvectorize(vwords)
-    #print "Vectorized words:"
-    #print vwords
-    
-    #inputs = dict()
-    #inputs[winput_name] = vwords
-    
-    #print "Random association:"
-    #y = self.brain.getAssociation(inputs)
-    #return self.wunvectorizer.unvectorize(y)
-    #print y
-    #return y
-    
-    #print "Test pronunciation:", self.wunvectorizer.unvectorize(vwords)
-    
-    #for input in self.inputs:
-    #  
-    #  print input.input(inputs[input.getName()])
   
   def stop(self, flush = False, debug = True):
     """

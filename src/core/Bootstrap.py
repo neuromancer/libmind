@@ -89,6 +89,6 @@ def gbootstrap(ginput, goutput, fnames):
     
     wunvectorizer = WunVectorizer.WunVectorizer(spectral_radius, goutput)
     wunvectorizer.train(to_train, [], True)
-    print ""
+    #print ""
 
     return wvectorizer, wunvectorizer

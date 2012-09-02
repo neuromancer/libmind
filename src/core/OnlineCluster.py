@@ -133,14 +133,7 @@ class OnlineCluster(object) :
                     break
             
             m.x.merge(m.y)
-            
-            #print len(self.clusters)
-            #for c in self.clusters:
-            #  print c.cindex, 
-        
-            #print "\nTo delete:"
-            #print m.y.cindex
-               
+
             self.clusters.remove(m.y)
               
             self.removedist(m.y)
@@ -150,13 +143,7 @@ class OnlineCluster(object) :
         newc=Cluster(e)
         self.clusters.append(newc)
         self.updatedist(newc)
-        
-        #for d in self.dist:
-        #    d.p()
-        #print ""
-        #print "--------------------------"
-        #print ""
-        #
+
         self.n+=1
     
     def removedist(self,c):
@@ -183,49 +170,6 @@ class OnlineCluster(object) :
         t=scipy.mean([x.size for x in filter(lambda x: x.size>0, self.clusters)])*0.1
         return filter(lambda x: x.size>=t, self.clusters)
     
-    
-# if __name__=="__main__": 
-    
-#     import random
-#     import time
-#     try:
-#         import pylab
-#         plot=True
-#     except:
-#         plot=False
-
-#     points=[]
-#     # create three random 2D gaussian clusters
-#     for i in range(3):
-#         x=random.random()*3
-#         y=random.random()*3
-#         c=[scipy.array((x+random.normalvariate(0,0.1), y+random.normalvariate(0,0.1))) for j in range(100)]
-#         points+=c
-
-    
-#     if plot: pylab.scatter([x[0] for x in points], [x[1] for x in points])
-
-#     random.shuffle(points)
-#     n=len(points)
-
-#     start=time.time()
-#     # the value of N is generally quite forgiving, i.e.
-#     # giving 6 will still only find the 3 clusters.
-#     # around 10 it will start finding more
-#     c=OnlineCluster(6)
-#     while len(points)>0: 
-#         c.cluster(points.pop())
-
-#     clusters=c.trimclusters()
-#     print "I clustered %d points in %.2f seconds and found %d clusters."%(n, time.time()-start, len(clusters))
-
-#     if plot: 
-#         cx=[x.center[0] for x in clusters]
-#         cy=[y.center[1] for y in clusters]
-    
-#         pylab.plot(cx,cy,"ro")
-#         pylab.draw()
-#         pylab.show()
 
 
         

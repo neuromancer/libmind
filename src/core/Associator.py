@@ -17,6 +17,7 @@ class Associator:
         self.randy = numpy.random.random((1,self.osize))
         
         # exp clustering
+        # TODO: how to tune this parameter?
         self.clustering=oc.OnlineCluster(20)
         
     def addToTrain(self, x, y):
@@ -34,6 +35,7 @@ class Associator:
         
     def __mkmodel(self):
         
+        # TODO: which one is better, linear or ridge regression?
         #model =  mdp.nodes.LinearRegressionNode(
         model =  Oger.nodes.RidgeRegressionNode(
                                   dtype='float64',
@@ -51,26 +53,6 @@ class Associator:
         
     def train(self, debug):
     
-        #self.lr = Oger.nodes.PerceptronNode(
-        #                           dtype='float64',
-        #                           input_dim=self.isize,
-        #                           output_dim=self.osize
-        #                           )
-        
-        #self.Xscaler.fit(self.Xtrain_data)
-        #self.Yscaler.fit(self.Ytrain_data)
-        
-        #print self.Xtrain_data[0]
-        #print self.Xtrain_data[1]
-        
-        #self.Xtrain_data = self.Xscaler.transform(self.Xtrain_data)
-        #self.__scale(self.Xscaler, self.Xtrain_data)
-        #self.Ytrain_data = self.Yscaler.transform(self.Ytrain_data)
-        #self.__scale(self.Yscaler, self.Ytrain_data)
-        
-        #print self.Xtrain_data[0]
-        #print self.Xtrain_data[1]
-        
         self.clusters = self.clustering.trimclusters()
         self.centers  = map(lambda c: c.center, self.clusters) 
         
@@ -98,22 +80,7 @@ class Associator:
                 self.centers[i] = numpy.repeat(float("-inf"),self.isize)
                 self.lrs[i] = None
         
-        #for i in range(len(self.clusters)):
-        #    if (self.lrs[i] == None):
-        #        del self.lrs[i]
-        #        del self.centers[i]
-            
-        
     def getAssociation(self, x):
-        
-        #return self.s.predict([x])
-        
-        #class NullWriter:
-        #     def write(self, *args, **kwargs):
-        #         pass
-                    
-        #stdout = sys.stdout
-        #sys.stdout = NullWriter()
         
         if (self.lrs == []):
             return self.randy
@@ -124,20 +91,5 @@ class Associator:
         assert(self.lrs[i] <> None)
         
         y = self.lrs[i].execute(single[0])
-        # sys.stdout = stdout
-    
+        
         return y
-    
-    # Scaler functions:
-        
-    #def __scale(self, scaler, data):
-    #    sdata = scaler.transform(data)
-    #    data_train = []
-                                    
-    #    for x in sdata:
-    #        data_train.append(x)
-    #    return data_train
-        
-#test = Associator(3,3)
-#test.train()
-#print test.getAssociation(numpy.random.random((1,3)))

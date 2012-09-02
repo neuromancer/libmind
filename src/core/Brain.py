@@ -51,7 +51,6 @@ class Brain(object):
         a_output_size = a_output_size + output.getInternalSize()
     
     self.associator = Associator.Associator(a_input_size, a_output_size)
-    #self.associator.train(False)
     
     
   def getAssociation(self, inputs):
@@ -64,15 +63,6 @@ class Brain(object):
     """
     
     (input, _) = self.__handleIO(inputs, None)
-    
-    
-    # TODO: find a way to handle multiple input nicely
-    #input_list = []
-    #for input in self.inputs:
-    #    input_list.append(inputs[input.getName()]) 
-    
-    #input = numpy.concatenate(input_list)
-    #print input    
     return self.associator.getAssociation(input)
 
   def setAssociation(self, inputs, outputs):
