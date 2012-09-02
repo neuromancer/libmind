@@ -54,7 +54,7 @@ for d in range(1, 12, 2):
 print "Number of true formulas", len(trues)
 print "Number of false formulas", len(falses)
 
-train_len = 8000
+train_len = 3000
 test_len  = 300
 
 true_sample = random.sample(trues, train_len+test_len)
@@ -65,7 +65,7 @@ false_sample = random.sample(falses, train_len+test_len)
 false_train_sample = false_sample[0:train_len]
 false_test_sample = false_sample[train_len : (train_len+test_len)]
 
-# mind initilization
+# mind initialization
 
 binput  = Categories.InputCats(bools+ops, "Logic")
 boutput = Categories.OutputCats(bools[0:2], "Logic")
@@ -105,7 +105,6 @@ stats = Stats.Stats(mind)
 for e in true_test_sample:
      formula_inputs = dict( SeqCatLogic = e)
      stats.evalSample(formula_inputs, "True", False)
-
 
 for e in false_test_sample:
      formula_inputs = dict( SeqCatLogic = e)
