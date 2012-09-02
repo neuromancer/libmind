@@ -17,7 +17,6 @@
     Copyright 2010, 2011, 2012 by neuromancer
 """
 
-import hyphen
 import src.io.Input as Input
 import src.io.Output as Output
 import src.aux as aux
