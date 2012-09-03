@@ -25,14 +25,13 @@ despair.
 1. Install the dependencies of Oger:
 
 
-    apt-get install python-numpy python-mdp 
+    apt-get install python-numpy python-mdp python2.7-dev
 
 
 2. Install Oger (a debian package generated using checkinstall is available)
 
 
-    wget "https://github.com/downloads/neuromancer/libmind/oger_1.1.3-1_all.deb"
-    dpkg -i oger_1.1.3-1_all.deb
+    wget "https://github.com/downloads/neuromancer/libmind/oger_1.1.3-1_all.deb" ; dpkg -i oger_1.1.3-1_all.deb
 
 
 * In Arch Linux
