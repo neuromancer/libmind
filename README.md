@@ -42,8 +42,8 @@ despair.
     packer -S python2-oger
 
 
-Then you are ready to start playing with libmind. Just clone this repository and view/execute the 
-test_*.py files 
+Then you are ready to start playing with libmind. Just clone this repository and view/execute 
+test_*.py files.
 
 
 ## Using libmind
@@ -61,24 +61,22 @@ The use of libmind is shown using several example or tests. The examples availab
 
 ### Identification of part of speech (POS) of English words only using their letters
 
-File:      test_POS.py
-
-Objective: To classify isolated words into nouns, verbs, adjectives or adverbs given their letters.
-
-Dataset:   Some words are randomly selected from this dataset: 
+- File:      test_POS.py
+- Objective: To classify isolated words into nouns, verbs, adjectives or adverbs given their letters.
+- Dataset: Some words are randomly selected from this dataset: 
            http://www.ashley-bovan.co.uk/words/partsofspeech.html 
            
 
 ### Reduction of variableless propositional logic formulas
 
-File:      test_logic.py
+- File:      test_logic.py
+- Objective: To classify between true and false variableless propositional formulas. 
+- Dataset:   The dataset is generated using the following grammar:
 
-Objective: To classify between true and false variableless propositional formulas. 
+        Formula := Formula and Formula | Formula or Formula | True | False | ~True | ~False
 
-Dataset:   The dataset is generated using the following grammar:
-           Formula -> Formula and Formula | Formula or Formula | True | False | ~True | ~False
-           The evaluation of the resulting formula is made using Python evaluation of booleans 
-           (where evaluation of "and" precedes "or") 
+ The evaluation of the resulting formula is made using Python evaluation of booleans 
+ (where evaluation of "and" precedes "or") 
 
 
 I'm thinking in more examples to extend and improve libmind but of course, *this experimental project is 
