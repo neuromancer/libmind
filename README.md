@@ -55,7 +55,7 @@ sequence. Every time an input is assimilated, the prediction of the next output 
 A stop function is used to finish with the current sequence, resetting the internal state of 
 the simulated mind.
 
-## Tests
+## Examples
 
 The use of libmind is shown using several example or tests. The examples available are:
 
