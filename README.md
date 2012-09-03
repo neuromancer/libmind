@@ -42,8 +42,12 @@ despair.
     packer -S python2-oger
 
 
-Then you are ready to start playing with libmind. Just clone this repository and view/execute 
-test_*.py files.
+After that, just clone this repository, and execute:
+
+    make
+
+to compile the C code. 
+Then you are ready to start playing with libmind. 
 
 
 ## Using libmind
