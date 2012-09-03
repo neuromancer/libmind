@@ -6,7 +6,7 @@ of letters as words, or phrases) using echo state networks. The usage of libmind
 as it is possible.
 
 ## Dedication
-* This project is dedicated to someone special who taught me the difference between hope and 
+This project is dedicated to someone special who taught me the difference between hope and 
 despair.
 
 ## Required dependencies for libmind:
@@ -24,18 +24,22 @@ despair.
 
 1. Install the dependencies of Oger:
 
-apt-get install python-numpy python-mdp 
+
+    apt-get install python-numpy python-mdp 
+
 
 2. Install Oger (a debian package generated using checkinstall is available)
 
-wget "https://github.com/downloads/neuromancer/libmind/oger_1.1.3-1_all.deb"
-dpkg -i oger_1.1.3-1_all.deb
+
+    wget "https://github.com/downloads/neuromancer/libmind/oger_1.1.3-1_all.deb"
+    dpkg -i oger_1.1.3-1_all.deb
+
 
 * In Arch Linux
 
 Just install Oger from aur (http://aur.archlinux.org/packages.php?ID=51256), for example, using packer:
 
-packer -S python2-oger
+    packer -S python2-oger
 
 ## Using libmind
 
