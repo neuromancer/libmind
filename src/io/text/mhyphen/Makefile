@@ -1,5 +1,5 @@
 I=-Iinclude -I/usr/include/python2.7
-L=-L/usr/lib -lpython2.7
+L=-L/usr/lib -lpython2.7 -fPIC
 S=-c src/*.c
 
 all: hnj.so
