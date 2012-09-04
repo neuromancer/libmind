@@ -17,5 +17,5 @@ hyphen.o: src/hyphen.c
 	gcc -c src/hyphen.c $I $L -o src/hyphen.o
 
 clean:
-	rm hnj.so
-	rm src/*.o
+	rm -f hnj.so
+	rm -f src/*.o

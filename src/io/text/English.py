@@ -16,17 +16,23 @@
 
     Copyright 2010, 2011, 2012 by neuromancer
 """
+try:
+  import mhyphen
+except ImportError:
+  print "ImportError!"
+  print "Remember to run make in the libmind directory to compile the C code before start using this library"
+  exit(1)
 
-import mhyphen
 import src.io.Input as Input
 import src.io.Output as Output
 import src.aux as aux
 
+
 h = mhyphen.Hyphenator(language = "en_US",
-                       lmin=1, rmin=1, 
-                       compound_lmin=1, 
-                       compound_rmin=1, 
-                       directory="src/io/text/mhyphen")
+                         lmin=1, rmin=1, 
+                         compound_lmin=1, 
+                         compound_rmin=1, 
+                         directory="src/io/text/mhyphen")
 
 ginternalSize = 35
 
